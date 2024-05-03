@@ -1,5 +1,4 @@
 #include QMK_KEYBOARD_H
-#include <stdio.h>
 
 enum layers {
     _BASE,
@@ -33,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT,  KC_A,     KC_S,     KC_D,    KC_F,    KC_G,                                  KC_H,    KC_J,           KC_K,    KC_L,     KC_SCLN,  KC_QUOT,
       KC_LCTL,  KC_Z,     KC_X,     KC_C,    KC_V,    KC_B,          KC_LBRC,      KC_RBRC,  KC_N,    KC_M,           KC_COMM, KC_DOT,   KC_SLSH,  KC_PIPE,
                                     KC_LALT, KC_LGUI, MO(_MOVEMENT), KC_SPC,       KC_ENT,   KC_BSPC, MO(_FUNCTIONS), KC_DEL
-          ),
+                                    ),
 
     //# .-----------------------------------------------.                                             .-----------------------------------------------.
     //# |       |       |       |       |       |       |                                             |       |       |       |       |       |       |
@@ -48,11 +47,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //#                      |       |       |       |/       /                                 \       \ |       |       |       |
     //#                      .-------+-------+-------+-------.                                    .------++-------+-------+-------.
   [_MOVEMENT] = LAYOUT(
-      KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,    KC_TRANS,                         KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,
-      KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,    KC_TRANS,                         KC_TRANS, KC_PGDN,  KC_PGUP,  KC_TRANS, KC_TRANS, KC_TRANS,
-      KC_GRV,   KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,      KC_PERC,                          KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, KC_END,   KC_TRANS,
-      KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,    KC_TRANS, KC_TRANS,     KC_HOME,  KC_NO,    KC_UNDS,  KC_PLUS,  KC_LCBR,  KC_RCBR,  KC_TRANS,
-                                    KC_TRANS, MO(_NUMPAD), KC_TRANS, KC_TRANS,     KC_TRANS, KC_TRANS, KC_NO,    KC_TRANS
+      _______,  _______,  _______,  _______, _______,     _______,                         _______, _______, _______, _______,  _______,  _______,
+      _______,  _______,  _______,  _______, _______,     _______,                         _______, KC_PGDN, KC_PGUP, _______,  _______,  _______,
+      KC_GRV,   KC_EXLM,  KC_AT,    KC_HASH, KC_DLR,      KC_PERC,                         KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_END,   _______,
+      _______,  _______,  _______,  _______, _______,     _______, _______,      KC_HOME,  KC_NO,   KC_UNDS, KC_PLUS, KC_LCBR,  KC_RCBR,  _______,
+                                    _______, MO(_NUMPAD), _______, _______,      _______,  _______, KC_NO,   _______
           ),
 
     //# .-----------------------------------------------.                                             .-----------------------------------------------.
@@ -68,11 +67,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //#                      |       |       |       |/       /                                 \       \ |       |       |       |
     //#                      .-------+-------+-------+-------.                                    .------++-------+-------+-------.
   [_NUMPAD] = LAYOUT(
-      KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,                         KC_NO,    KC_7,     KC_8,     KC_9,     KC_PSLS,  KC_TRANS,
-      KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                             KC_NO,    KC_4,     KC_5,     KC_6,     KC_PAST,  KC_TRANS,
-      KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,                            KC_NO,    KC_1,     KC_2,     KC_3,     KC_PMNS,  KC_TRANS,
-      KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_TRANS,     KC_TRANS, KC_PLUS,  KC_0,     KC_DOT,   KC_COMM,  KC_PPLS,  KC_PENT,
-                                    KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,     KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS
+      _______,  _______,  _______,  _______, _______, _______,                         KC_NO,   KC_7,    KC_8,    KC_9,     KC_PSLS,  _______,
+      KC_GRV,   KC_1,     KC_2,     KC_3,    KC_4,    KC_5,                            KC_NO,   KC_4,    KC_5,    KC_6,     KC_PAST,  _______,
+      KC_F1,    KC_F2,    KC_F3,    KC_F4,   KC_F5,   KC_F6,                           KC_NO,   KC_1,    KC_2,    KC_3,     KC_PMNS,  _______,
+      KC_F7,    KC_F8,    KC_F9,    KC_F10,  KC_F11,  KC_F12,  _______,      _______,  KC_PLUS, KC_0,    KC_DOT,  KC_COMM,  KC_PPLS,  KC_PENT,
+                                    _______, _______, _______, _______,      _______,  _______, _______, _______
           ),
 
     //# .-----------------------------------------------.                                             .-----------------------------------------------.
@@ -88,21 +87,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //#                      |       |       |       |/       /                                 \       \ |       |       |       |
     //#                      .-------+-------+-------+-------.                                    .------++-------+-------+-------.
   [_FUNCTIONS] = LAYOUT(
-      KC_TILD,  KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,                          KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_UNDS,
-      KC_TRANS, KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,                            KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_TRANS,
-      KC_TRANS, KC_F11,   KC_F12,   RGB_HUI,  RGB_SAI,  RGB_VAI,                          KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRANS,
-      KC_TRANS, RGB_TOG,  RGB_MOD,  RGB_HUD,  RGB_SAD,  RGB_VAD,  KC_NO,        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,
-                                    KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,     KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS
+      KC_TILD,  KC_EXLM,  KC_AT,    KC_HASH, KC_DLR,  KC_PERC,                         KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,  KC_RPRN,  KC_UNDS,
+      _______,  KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,                           KC_F6,   KC_F7,   KC_F8,   KC_F9,    KC_F10,   _______,
+      _______,  KC_F11,   KC_F12,   RGB_HUI, RGB_SAI, RGB_VAI,                         KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,    _______,
+      _______,  RGB_TOG,  RGB_MOD,  RGB_HUD, RGB_SAD, RGB_VAD, KC_NO,        KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,    KC_NO,
+                                    _______, _______, _______, _______,      _______,  _______, _______, _______
           ),
 
 };
 /*
   [15] = LAYOUT(
-      KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,                         KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,
-      KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,                         KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,
-      KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,                         KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,
-      KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,     KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,
-                                    KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS,     KC_TRANS, KC_TRANS, KC_TRANS, KC_TRANS
+      _______, _______, _______, _______, _______, _______,                         _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                         _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                         _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______,
+                                    _______, _______, _______, _______,     _______, _______, _______, _______
          )
 */
 
@@ -151,7 +150,7 @@ qmk-keyboard-format:json:begin
     "vizsymbols": {
         "KC_TRANS": "     ",
         "KC_NO": "  ⍉  ",
-        "KC_TRANS": "     ",
+        "_______": "     ",
         "KC_0": "  0  " ,
         "KC_1": "  1  " ,
         "KC_2": "  2  " ,
@@ -292,6 +291,3 @@ qmk-keyboard-format:json:begin
 }
 qmk-keyboard-format:json:end
 */
-
-
-
