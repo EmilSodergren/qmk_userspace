@@ -15,3 +15,4 @@
 
 COMBO_ENABLE = yes
 OLED_ENABLED = yes
+CONVERT_TO=liatris
