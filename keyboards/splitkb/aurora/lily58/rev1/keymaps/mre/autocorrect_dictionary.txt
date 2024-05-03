@@ -1,0 +1,9 @@
+:docke:       -> docker
+:dokcer:      -> docker
+:doker:       -> docker
+:iamges:      -> images
+:rimages:     -> images
+:riamges:     -> images
+:dmkae:       -> dmake
+lenght        -> length
+widht         -> width
