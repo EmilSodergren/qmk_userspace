@@ -21,17 +21,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //# |-------+-------+-------+-------+-------+-------|                                             |-------+-------+-------+-------+-------+-------|
     //# |   ⇧   |   A   |   S   |   D   |   F   |   G   |-------.                             .-------|   H   |   J   |   K   |   L   |   :   | QUOT) |
     //# |-------+-------+-------+-------+-------+-------|   [   |                             |   ]   |-------+-------+-------+-------+-------+-------|
-    //# |   ^   |   Z   |   X   |   C   |   V   |   B   |-------|                             |-------|   N   |   M   |   ,   |   .   |   /   | BSLS) |
+    //# |   ^   |   Z   | KC_X) | KC_C) | KC_V) |   B   |-------|                             |-------|   N   |   M   |   ,   |   .   |   /   | BSLS) |
     //# .-------+-------+-------+-------+-------+-------/       /                             \       \-------+-------+-------+-------+-------+-------.
     //#                      |   ⎇   |   ⌘   | MENT) | /       /                               \   ⏎   \  |   ⌫   | IONS) |   ⌦   |
     //#                      |       |       |       |/       /                                 \       \ |       |       |       |
     //#                      .-------+-------+-------+-------.                                    .------++-------+-------+-------.
   [_BASE] = LAYOUT(
-      KC_GRV,   KC_1,     KC_2,     KC_3,    KC_4,    KC_5,                                  KC_6,    KC_7,           KC_8,    KC_9,     KC_0,     KC_MINS,
-      KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,                                  KC_Y,    KC_U,           KC_I,    KC_O,     KC_P,     KC_EQL,
-      KC_LSFT,  KC_A,     KC_S,     KC_D,    KC_F,    KC_G,                                  KC_H,    KC_J,           KC_K,    KC_L,     KC_SCLN,  RSFT_T(KC_QUOT),
-      KC_LCTL,  KC_Z,     KC_X,     KC_C,    KC_V,    KC_B,          KC_LBRC,      KC_RBRC,  KC_N,    KC_M,           KC_COMM, KC_DOT,   KC_SLSH,  RCTL_T(KC_BSLS),
-                                    KC_LALT, KC_LGUI, MO(_MOVEMENT), KC_SPC,       KC_ENT,   KC_BSPC, MO(_FUNCTIONS), KC_DEL
+      KC_GRV,   KC_1,     KC_2,       KC_3,       KC_4,       KC_5,                                  KC_6,    KC_7,           KC_8,    KC_9,     KC_0,     KC_MINS,
+      KC_TAB,   KC_Q,     KC_W,       KC_E,       KC_R,       KC_T,                                  KC_Y,    KC_U,           KC_I,    KC_O,     KC_P,     KC_EQL,
+      KC_LSFT,  KC_A,     KC_S,       KC_D,       KC_F,       KC_G,                                  KC_H,    KC_J,           KC_K,    KC_L,     KC_SCLN,  RSFT_T(KC_QUOT),
+      KC_LCTL,  KC_Z,     LT(0,KC_X), LT(0,KC_C), LT(0,KC_V), KC_B,          KC_LBRC,      KC_RBRC,  KC_N,    KC_M,           KC_COMM, KC_DOT,   KC_SLSH,  RCTL_T(KC_BSLS),
+                                      KC_LALT,    KC_LGUI,    MO(_MOVEMENT), KC_SPC,       KC_ENT,   KC_BSPC, MO(_FUNCTIONS), KC_DEL
                                     ),
 
     //# .-----------------------------------------------.                                             .-----------------------------------------------.
@@ -105,15 +105,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          )
 */
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(0,KC_X):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(C(KC_X)); // Intercept hold function to send Ctrl-X
+                return false;
+            }
+            return true;             // Return true for normal processing of tap keycode
+        case LT(0,KC_C):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(C(KC_C)); // Intercept hold function to send Ctrl-C
+                return false;
+            }
+            return true;             // Return true for normal processing of tap keycode
+        case LT(0,KC_V):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(C(S(KC_V))); // Intercept hold function to send Ctrl-V
+                return false;
+            }
+            return true;             // Return true for normal processing of tap keycode
+    }
+    return true;
+}
+
 /*
 qmk-keyboard-format:json:begin
 {
-    "name": "lily58",
+    "name": "lily56",
     "numkeys": 58,
     "svg": "lily58.svg",
     "rows": [
-                [-3, 0  , 1  , 2  , 3  , 4  , 5  , -1 ,  -2,  -1 , 6  , 7  , 8  , 9  , 10 , 11],
-                [-3, 12 , 13 , 14 , 15 , 16 , 17 , -1 ,  -2,  -1 , 18 , 19 , 20 , 21 , 22 , 23],
+                [-4, 0  , 1  , 2  , 3  , 4  , 5  , -1 ,  -2,  -1 , 6  , 7  , 8  , 9  , 10 , 11],
+                [-4, 12 , 13 , 14 , 15 ,16 , 17 , -1 ,  -2,  -1 , 18 , 19 , 20 , 21 , 22 , 23],
                 [-3, 24 , 25 , 26 , 27 , 28 , 29 , -1 ,  -2,  -1 , 30 , 31 , 32 , 33 , 34 , 35],
                 [-3, 36 , 37 , 38 , 39 , 40 , 41 , 42 ,  -2,  43 , 44 , 45 , 46 , 47 , 48 , 49],
                 [-3, -1 ,-1 ,  -1 , 50 , 51 , 52 , 53 ,  -2,  54 , 55 , 56 , 57 , -1 , -1 ,-1 ]
