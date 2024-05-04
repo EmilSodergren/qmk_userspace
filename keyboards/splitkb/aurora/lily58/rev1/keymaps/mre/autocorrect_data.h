@@ -1,6 +1,3 @@
-Autocorrection will falsely trigger when a typo is a substring of a correctly spelled word.
-To check for this, install the english_words package and rerun this script:
-  python3 -m pip install english_words
 // Copyright 2024 QMK
 // SPDX-License-Identifier: GPL-2.0-or-later
 
