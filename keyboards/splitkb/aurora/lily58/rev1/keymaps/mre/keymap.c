@@ -104,6 +104,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     _______, _______, _______, _______,     _______, _______, _______, _______
          )
 */
+void keyboard_pre_init_user(void){
+    setPinOutput(24);
+    writePinHigh(24);
+}
 
 #ifdef OLED_ENABLE
 void my_render_space(void) {
