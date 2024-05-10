@@ -7,3 +7,5 @@
 :dmkae:       -> dmake
 lenght        -> length
 widht         -> width
+
+elelr:       -> eller
