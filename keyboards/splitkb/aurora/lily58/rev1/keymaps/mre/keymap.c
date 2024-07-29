@@ -9,11 +9,9 @@ enum layers {
 };
 
 const uint16_t PROGMEM esc_combo[] = {KC_GRV, KC_1, COMBO_END};
-const uint16_t PROGMEM esc_combo2[] = {KC_J, KC_K, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, KC_ESC),
-    COMBO(esc_combo2, KC_ESC),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
