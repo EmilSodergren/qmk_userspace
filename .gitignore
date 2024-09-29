@@ -11,3 +11,5 @@
 *.hex
 *.bin
 *.uf2
+
+compile_commands.json
